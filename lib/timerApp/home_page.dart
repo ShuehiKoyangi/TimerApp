@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_app_neo/timerApp/countdown_page.dart';
 import 'package:timer_app_neo/widget/button.dart';
-import 'package:timer_app_neo/widget/switcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<bool> isSelected = [true, false];
   bool isStarted = false;
-  Duration duration = const Duration(hours: 0, minutes: 4, seconds: 0);
+  Duration duration = const Duration(hours: 0, minutes: 0, seconds: 1);
 
   @override
   void initState() {
@@ -53,8 +52,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(
               children: [
-                const Switcher(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 72),
                 SizedBox(
                     height: 180,
                     child: CupertinoTimerPicker(
@@ -69,9 +67,9 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Button(title: "キャンセル", onTap: initCancel),
+                    Button(title: "キャンセル", isEnabled: false, onTap: initCancel),
                     const SizedBox(width: 100),
-                    Button(title: "開始", onTap: initTimer)
+                    Button(title: "開始", isEnabled: true, onTap: initTimer)
                   ],
                 ),
               ],

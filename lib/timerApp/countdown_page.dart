@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:timer_app_neo/timerApp/home_page.dart';
-
 import '../widget/button.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
 class CountDown extends StatefulWidget {
   final Duration duration;
@@ -27,7 +26,9 @@ class _CountDownState extends State<CountDown> {
   }
 
   void startTimer() {
-    isStarted = true;
+    setState(() {
+      isStarted = true;
+    });
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
   }
@@ -44,11 +45,40 @@ class _CountDownState extends State<CountDown> {
         final seconds = myDuration!.inSeconds - reduceSecondsBy;
         if (seconds < 0 && countdownTimer != null) {
           countdownTimer!.cancel();
+          notfifyTimeUp();
+          _showDialog(context);
         } else {
           myDuration = Duration(seconds: seconds);
         }
       });
     }
+  }
+
+  void notfifyTimeUp() {
+    FlutterRingtonePlayer.play(
+      android: AndroidSounds.notification, // Android用のサウンド
+      ios: const IosSound(1023), // iOS用のサウンド
+      looping: true, // Androidのみ。ストップするまで繰り返す
+      asAlarm: false, // Androidのみ。サイレントモードでも音を鳴らす
+      volume: 0.0, // Androidのみ。0.0〜1.0
+    );
+  }
+
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('終了しました'),
+          actions: [
+            OutlinedButton(
+                onPressed: () => Navigator.pushNamed(context, '/home'),
+                child: const Text('閉じる'))
+          ],
+        );
+      },
+    );
   }
 
   void backToHomePage() {
@@ -97,11 +127,14 @@ class _CountDownState extends State<CountDown> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Button(title: "キャンセル", onTap: backToHomePage),
+                    Button(
+                        title: "キャンセル", isEnabled: true, onTap: backToHomePage),
                     const SizedBox(width: 100),
                     (isStarted)
-                        ? Button(title: "一時停止", onTap: stopTimer)
-                        : Button(title: "再開", onTap: startTimer)
+                        ? Button(
+                            title: "一時停止", isEnabled: true, onTap: stopTimer)
+                        : Button(
+                            title: "再開", isEnabled: true, onTap: startTimer)
                   ],
                 ),
               ],

@@ -4,9 +4,11 @@ class Button extends StatefulWidget {
   const Button({
     Key? key,
     required this.title,
+    required this.isEnabled,
     required this.onTap,
   }) : super(key: key);
   final String title;
+  final bool isEnabled;
   final VoidCallback onTap;
 
   @override
@@ -26,9 +28,9 @@ class _ButtonState extends State<Button> {
     Text(widget.title);
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(255, 168, 224, 105),
           minimumSize: const Size(100, 100),
-          primary: const Color.fromARGB(255, 168, 224, 105),
-          onPrimary: Colors.black,
           shape: const CircleBorder(
             side: BorderSide(
               color: Colors.black,
@@ -37,9 +39,11 @@ class _ButtonState extends State<Button> {
             ),
           ),
         ),
-        onPressed: () {
-          widget.onTap();
-        },
+        onPressed: !widget.isEnabled
+            ? null
+            : () {
+                widget.onTap();
+              },
         child: Text(widget.title));
   }
 }
