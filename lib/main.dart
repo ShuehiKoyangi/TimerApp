@@ -11,14 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: '/',
-        routes: {
-          // '/home': (context) => const HomePage(),
-          '/': (context) => const HomePage(),
-        });
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+      },
+    );
   }
 }

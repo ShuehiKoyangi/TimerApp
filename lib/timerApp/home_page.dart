@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                     height: 180,
                     child: CupertinoTimerPicker(
+                      backgroundColor: Colors.white10,
                       initialTimerDuration: duration,
                       mode: CupertinoTimerPickerMode.hms,
                       minuteInterval: 1,

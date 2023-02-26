@@ -73,8 +73,12 @@ class _CountDownState extends State<CountDown> {
           title: const Text('終了しました'),
           actions: [
             OutlinedButton(
-                onPressed: () => Navigator.pushNamed(context, '/'),
-                child: const Text('閉じる'))
+              onPressed: () => Navigator.pushNamed(
+                context,
+                '/',
+              ),
+              child: const Text('閉じる'),
+            )
           ],
         );
       },
