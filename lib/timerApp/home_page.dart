@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<bool> isSelected = [true, false];
   bool isStarted = false;
-  Duration duration = const Duration(hours: 0, minutes: 0, seconds: 1);
+  Duration duration = const Duration(hours: 0, minutes: 1, seconds: 1);
 
   @override
   void initState() {
