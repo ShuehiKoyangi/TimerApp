@@ -73,10 +73,7 @@ class _CountDownState extends State<CountDown> {
           title: const Text('終了しました'),
           actions: [
             OutlinedButton(
-              onPressed: () => Navigator.pushNamed(
-                context,
-                '/',
-              ),
+              onPressed: () => backToHomePageFromDialog(),
               child: const Text('閉じる'),
             )
           ],
@@ -87,14 +84,14 @@ class _CountDownState extends State<CountDown> {
 
   void backToHomePage() {
     setState(() {
-      Navigator.pop(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) => const HomePage(),
-          transitionDuration: Duration.zero,
-          reverseTransitionDuration: Duration.zero,
-        ),
-      );
+      Navigator.of(context).pop();
+    });
+  }
+
+  void backToHomePageFromDialog() {
+    setState(() {
+      int count = 0;
+      Navigator.of(context).popUntil((_) => count++ >= 2);
     });
   }
 
