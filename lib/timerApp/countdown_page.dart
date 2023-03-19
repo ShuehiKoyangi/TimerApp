@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:timer_app_neo/timerApp/home_page.dart';
+import 'package:timer_app_neo/widget/time_card.dart';
 import '../widget/button.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
@@ -115,15 +116,25 @@ class _CountDownState extends State<CountDown> {
             Column(
               children: [
                 const SizedBox(height: 24),
-                SizedBox(
-                    height: 180,
-                    child: Text(
-                      '$hours:$minutes:$seconds',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 50),
-                    )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TimeCard(time: hours, header: 'HOURS'),
+                    const SizedBox(width: 8),
+                    TimeCard(time: minutes, header: 'MINIUTES'),
+                    const SizedBox(width: 8),
+                    TimeCard(time: seconds, header: 'SECONDS'),
+                  ],
+                ),
+                // SizedBox(
+                //     height: 180,
+                //     child: Text(
+                //       '$hours:$minutes:$seconds',
+                //       style: const TextStyle(
+                //           fontWeight: FontWeight.bold,
+                //           color: Colors.black,
+                //           fontSize: 50),
+                //     )),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
