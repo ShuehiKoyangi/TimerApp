@@ -116,25 +116,19 @@ class _CountDownState extends State<CountDown> {
             Column(
               children: [
                 const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TimeCard(time: hours, header: 'HOURS'),
-                    const SizedBox(width: 8),
-                    TimeCard(time: minutes, header: 'MINIUTES'),
-                    const SizedBox(width: 8),
-                    TimeCard(time: seconds, header: 'SECONDS'),
-                  ],
+                SizedBox(
+                  height: 180,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TimeCard(time: hours, header: 'HOURS'),
+                      const SizedBox(width: 8),
+                      TimeCard(time: minutes, header: 'MINIUTES'),
+                      const SizedBox(width: 8),
+                      TimeCard(time: seconds, header: 'SECONDS'),
+                    ],
+                  ),
                 ),
-                // SizedBox(
-                //     height: 180,
-                //     child: Text(
-                //       '$hours:$minutes:$seconds',
-                //       style: const TextStyle(
-                //           fontWeight: FontWeight.bold,
-                //           color: Colors.black,
-                //           fontSize: 50),
-                //     )),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
